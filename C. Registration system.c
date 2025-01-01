@@ -2,33 +2,36 @@
 #include<string.h>
 
 int main(void){
-        long int i,j=0,k,n;
+    int i, j, n;
 
-        scanf("%ld",&n);
-        long int p[n+1];
-        char a[n+1][35],b[n+1][35];
+    scanf("%d", &n);
 
-        for(i=0;i<n;i++){
-            p[i]=0;
-        }
+    int count[n+1], last_count[n+1];
+    char a[n+1][33], b[n+1][33];
 
-        for(i=0;i<n;i++){
-            scanf("%s",a[i]);
-
-            if(i==0){
-                strcpy(b[i], "Ok");
-                continue;
+    for(i=0;i<n;i++){
+        count[i]=0;
+        last_count[i]=0;
+        scanf("%s", &a[i]);
+        if(i==0)strcpy(c[i],a[i]);
+        for(j=0;j<i;j++){
+            if(strcmp(a[i],c[j])==0){
+                count[i]=last_count[j]+1;
+                last_count[j]++;
+                break;
             }
-            for(k=0;k<i;k++){
-                if(strcmp(a[i], a[k])==0){
-                    p[k]++;
-                    sprintf(b[i], "%s%d", a[i], p[k]);
-                }
-                else strcpy(b[i], "OK");
+            else if(j==i-1){
+                strcpy(c[i],a[i]);
             }
         }
+    }
 
-        for(i=0;i<n;i++){
-            printf("%s\n", b[i]);
+    for(i=0;i<n;i++){
+        if(count[i]==0)printf("OK\n");
+        else{
+            printf("%s%d\n", a[i],count[i]);
         }
+    }
+
+    return 0;
 }
